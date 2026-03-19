@@ -4,12 +4,19 @@ import axios from "axios";
 const API_URL = "https://dummyjson.com/products" 
 
 const fetchProducts = createAsyncThunk(
-    "products/fetchProduct",
-    async () =>{
-        const res = await axios.get(API_URL)
-        return res.data.products
+  "products/fetchProduct",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get(API_URL);
+      return res.data.recipes; // success → fulfilled
+    } catch (error) {
+      // send custom error message
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
-)
+  }
+);
 
 const productSlice = createSlice({
     name :'products',
