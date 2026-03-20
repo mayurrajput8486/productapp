@@ -39,7 +39,7 @@ const Navbar = () => {
                   </NavLink>
 
                   
-                  <span>₹{totalAmount.toFixed(2)}</span>
+                  <span>${totalAmount.toFixed(2)}</span>
                 
                   <NavLink
                     to="/cart"
