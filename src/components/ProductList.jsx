@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../features/products/productSlice";
+import { addToCart } from "../features/cart/cartSlice";
 const ProductList = () => {
   const dispatch = useDispatch();
   const { items, loading } = useSelector((state) => state.products);
@@ -22,7 +23,7 @@ const ProductList = () => {
               <p>₹{product.price}</p>
               <img src={product.thumbnail} className="mx-auto w-24" alt="" />
 
-              <button className="bg-black p-2 text-white mt-2 w-full">
+              <button className="bg-black p-2 text-white mt-2 w-full" onClick={()=>dispatch(addToCart(product))}>
                 Add to Cart
               </button>
             </div>
